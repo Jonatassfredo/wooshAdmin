@@ -1,6 +1,6 @@
-<mat-card>
+<mat-card class="matcard">
     <mat-card-content>
-        <mat-list dense>
+        <mat-list>
             <mat-list-item>
                 <mat-label>Títulos</mat-label>
                 <input matInput [(ngModel)]="produto.nome" type="text">
@@ -10,7 +10,7 @@
                 <input matInput [(ngModel)]="produto.preco" type="tel">
             </mat-list-item>
             <mat-list-item>
-                <mat-label>Preço</mat-label>
+                <mat-label>Descrição</mat-label>
                 <textarea [(ngModel)]="produto.descricao" rows="4"></textarea>
             </mat-list-item>
             <mat-list-item>
@@ -18,7 +18,7 @@
                 <mat-option *ngFor="let item of categorias">{{item.titulo}}</mat-option>
             </mat-list-item>
             <mat-list-item *ngIf="produto.foto">
-                <!-- <img [src]="produto.foto"> -->
+                <img [src]="produto.foto" class="foto">
             </mat-list-item>
         </mat-list>
     </mat-card-content>
