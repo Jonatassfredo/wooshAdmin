@@ -1,0 +1,24 @@
+<div class="app">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <mat-icon>local_pizza</mat-icon>
+            <span class="iconLogo">Woosh</span>
+            <span class="example-spacer"></span>
+            <div class="example-button-row">
+                <a routerLink="../pedidos" mat-button>Pedidos</a>
+                <a mat-button>Mensagens</a>
+                <a routerLink="../produtos" mat-button>Produtos</a>
+                <a routerLink="../categorias" mat-button>Categorias</a>
+                <a routerLink="../clientes" mat-button>Clientes</a>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-list lines>
+        <mat-list-item *ngIf="chats.length == 0" style="color: black;">
+            Você não tem nenhum chat até o momento.
+        </mat-list-item>
+        <mat-list-item *ngFor="let chat of chats" text-wrap style="color: black;">
+            <p>{{chats}}</p>
+        </mat-list-item>
+    </mat-list>
+</div>

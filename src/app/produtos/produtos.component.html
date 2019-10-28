@@ -1,0 +1,34 @@
+<div class="app">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <mat-icon>local_pizza</mat-icon>
+            <span class="iconLogo">Woosh</span>
+            <span class="example-spacer"></span>
+            <div class="example-button-row">
+                <a routerLink="../pedidos" mat-button>Pedidos</a>
+                <a routerLink="../mensagens" mat-button>Mensagens</a>
+                <a mat-button>Produtos</a>
+                <a routerLink="../categorias" mat-button>Categorias</a>
+                <a routerLink="../clientes" mat-button>Clientes</a>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div>
+        <button mat-raised-button>Adcionar Produto
+            <mat-icon class="mat-18">plus</mat-icon>
+        </button>
+    </div>
+    <mat-list lines *ngIf="!isLoading">
+        <mat-list-item *ngIf="lista.length == 0" style="color: black;">
+            Você não tem nenhuma categoria cadastrada.
+        </mat-list-item>
+        <mat-list-item *ngFor="let item of lista" text-wrap (click)="addOrEdit(item)" style="color: black;">
+            <p>Produto: <strong>{{ item.nome }}</strong>
+            </p>
+            <p style="margin-left: 10%;">
+                Categoria: <strong>{{ item.categoriaId.titulo }}</strong>
+            </p>
+            <button mat-raised-button (click)="addOrEdit(item)" class="btnEditar">Editar</button>
+        </mat-list-item>
+    </mat-list>
+</div>

@@ -1,0 +1,43 @@
+<div class="app">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <mat-icon>local_pizza</mat-icon>
+            <span class="iconLogo">Woosh</span>
+            <span class="example-spacer"></span>
+            <div class="example-button-row">
+                <a mat-button>Pedidos</a>
+                <a routerLink="../mensagens" mat-button>Mensagens</a>
+                <a routerLink="../produtos" mat-button>Produtos</a>
+                <a routerLink="../categorias" mat-button>Categorias</a>
+                <a routerLink="../clientes" mat-button>Clientes</a>
+                <a mat-button align="end" (click)="sair()">Sair</a>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-card *ngFor="let item of lista" style="margin: 5%;">
+        <mat-card-title>
+            Pedido <strong>{{item._id}}</strong>
+        </mat-card-title>
+        <mat-card-content>
+            <p>Cliente: <strong>{{item.usuarioId}}</strong></p>
+            <p>Efetuado em: <strong>{{ item.dataPedido | date:'dd/MM/yyyy, HH:mm' }}</strong></p>
+            <p>Total de Itens: <strong>{{ contaItem(item) }}</strong></p>
+            <p>Valor total: <strong> R$: {{ item.valorTotal }}</strong></p>
+            <p>Status: <strong>{{item.status}}</strong></p>
+            <p>Aceito: <strong>{{item.aceito}}</strong></p>
+            <div>
+                <p>Itens:</p>
+                <p>{{item.itensGeral}}</p>
+                <p>{{item.itens}}</p>
+            </div>
+            <div>
+                <p>Enderço Entrega: <strong>{{item.enderecoEntregaId}}</strong></p>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="start">
+            <button mat-button>Aceitar</button>
+            <button mat-button>Recusar</button>
+            <button mat-button>Chat</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
