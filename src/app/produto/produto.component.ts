@@ -16,7 +16,6 @@ export class ProdutoComponent implements OnInit {
   produto: ProdutoModel;
   // produto: any;
   categorias: Array<CategoriaModel> = new Array<CategoriaModel>();
-  _prod: any;
   produtos: Array<ProdutoModel> = new Array<ProdutoModel>();
 
   constructor(
@@ -25,8 +24,10 @@ export class ProdutoComponent implements OnInit {
     private router: ActivatedRoute
   ) {
 
-    this._prod = this.router.snapshot.paramMap.get('_id');
-    console.log(this._prod);
+    // this._prod = this.router.snapshot.paramMap.get('_id');
+    // console.log(this._prod);
+
+
     // if (this._prod) {
     // this.produto = <ProdutoModel>this._prod;
     // console.log('descricao', this._prod.descricao);
@@ -44,16 +45,16 @@ export class ProdutoComponent implements OnInit {
     // this.load();
   }
 
-  async load(): Promise<void> {
-    try {
-      let produtosResult = await this.produtoSrv.produtosById(this._prod);
-      if (produtosResult.success)
-        this.produtos = <Array<ProdutoModel>>produtosResult.data;
-      console.log(produtosResult.data);
-    } catch (error) {
-      console.log("problema ao carregar os produtos", error);
-    }
-  }
+  // async load(): Promise<void> {
+  //   try {
+  //     let produtosResult = await this.produtoSrv.produtosById(this._prod);
+  //     if (produtosResult.success)
+  //       this.produtos = <Array<ProdutoModel>>produtosResult.data;
+  //     console.log(produtosResult.data);
+  //   } catch (error) {
+  //     console.log("problema ao carregar os produtos", error);
+  //   }
+  // }
 
   async loadData(): Promise<void> {
     try {
@@ -69,10 +70,15 @@ export class ProdutoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.router.params.subscribe((objeto: any) => {
+      let prod: ProdutoModel;
+      prod = <Array<ProdutoModel>>objeto;
+      this.produto = prod;
+      console.log("produtos ngOnInit", this.produto);
+      console.log("categoria ID", prod.categoriaId);
 
-
+    })
   }
-
 }
 
 // let _prod = this.router.snapshot.paramMap.get('_produto');

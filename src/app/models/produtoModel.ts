@@ -4,6 +4,6 @@ export class ProdutoModel {
   descricao: string;
   preco: number;
   foto: string;
-  categoriaId: any;
+  categoriaId: string;
   observacoes: string;
 }
