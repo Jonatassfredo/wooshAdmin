@@ -72,7 +72,7 @@ export class ProdutoComponent implements OnInit {
   ngOnInit() {
     this.router.params.subscribe((objeto: any) => {
       let prod: ProdutoModel;
-      prod = <Array<ProdutoModel>>objeto;
+      prod = <ProdutoModel>objeto;
       this.produto = prod;
       console.log("produtos ngOnInit", this.produto);
       console.log("categoria ID", prod.categoriaId);
