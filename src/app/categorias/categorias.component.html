@@ -13,19 +13,20 @@
             </div>
         </mat-toolbar-row>
     </mat-toolbar>
-    <div>
-        <button mat-raised-button>Adcionar Categoria
-            <mat-icon class="mat-18">plus</mat-icon>
-        </button>
-    </div>
-    <mat-list lines>
-        <mat-list-item *ngIf="lista.length == 0" style="color: black;">
-            Você não tem nenhuma categoria cadastrada.
-        </mat-list-item>
-        <mat-list-item class="tamanhoColuna" *ngFor="let item of lista" text-wrap (click)="addOrEdit(item)"
-            style="color: black;">
-            <p>Categoria: <strong>{{ item.titulo }}</strong></p>
-            <button mat-raised-button (click)="addOrEdit(item)" class="btnEditar">Editar</button>
-        </mat-list-item>
-    </mat-list>
-</div>
+    <mat-card class="card">
+        <div>
+            <button mat-raised-button (click)="add()">Adcionar Categoria
+                <mat-icon class="mat-18">plus</mat-icon>
+            </button>
+        </div>
+        <mat-list lines>
+            <mat-list-item *ngIf="lista.length == 0" style="color: black;">
+                Você não tem nenhuma categoria cadastrada.
+            </mat-list-item>
+            <mat-list-item class="tamanhoColuna" *ngFor="let item of lista" text-wrap (click)="addOrEdit(item)"
+                style="color: black;">
+                <p>Categoria: <strong>{{ item.titulo }}</strong></p>
+                <button mat-raised-button (click)="addOrEdit(item)" class="btnEditar">Editar</button>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>

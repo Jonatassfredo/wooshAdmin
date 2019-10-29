@@ -37,6 +37,7 @@ import { CategoriasComponent } from './categorias/categorias.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CategoriaComponent } from './categoria/categoria.component';
 
 // const appRoutes: Routes = [
 //   { path: "login", component: LoginComponent },
@@ -61,7 +62,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CategoriasComponent,
     ClientesComponent,
     ProdutoComponent,
-    NotFoundComponent],
+    NotFoundComponent,
+    CategoriaComponent],
   imports: [
     BrowserModule,
     FormsModule,

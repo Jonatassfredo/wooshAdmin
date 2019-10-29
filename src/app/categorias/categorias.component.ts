@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaModel } from "../../app/models/categoriaModel";
 import { CategoriaProvider } from "../../providers/categoria/categoria";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categorias',
@@ -10,7 +11,7 @@ import { CategoriaProvider } from "../../providers/categoria/categoria";
 export class CategoriasComponent implements OnInit {
   lista: Array<CategoriaModel> = new Array<CategoriaModel>();
 
-  constructor(private categoriaSrv: CategoriaProvider) {
+  constructor(private categoriaSrv: CategoriaProvider, private router: Router) {
     this._loadData();
   }
 
@@ -23,6 +24,10 @@ export class CategoriasComponent implements OnInit {
 
   addOrEdit(model?: CategoriaModel): void {
     // this.router.navigateByUrl('login', { categoria: model });
+  }
+
+  add() {
+    this.router.navigateByUrl('categoria/categoriaModel');
   }
 
   ngOnInit() {

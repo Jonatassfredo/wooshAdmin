@@ -12,19 +12,20 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./produto.component.scss']
 })
 export class ProdutoComponent implements OnInit {
+  // produto: ProdutoModel = new ProdutoModel();
+  // categoria: CategoriaModel = new CategoriaModel();
+  // categorias: Array<CategoriaModel> = new Array<CategoriaModel>();
+  // produtos: ProdutoModel = new ProdutoModel();
+
   produto: ProdutoModel;
-  categoria: CategoriaModel;
   categorias: Array<CategoriaModel> = new Array<CategoriaModel>();
-  produtos: Array<ProdutoModel> = new Array<ProdutoModel>();
 
   constructor(
     private categoriaSrv: CategoriaProvider,
     private produtoSrv: ProdutoProvider,
     private router: ActivatedRoute,
     private _router: Router,
-  ) {
-    this.loadData();
-  }
+  ) { }
 
   async loadData(): Promise<void> {
     // Carrega todas as categorias
@@ -32,11 +33,18 @@ export class ProdutoComponent implements OnInit {
       let categoriasResult = await this.categoriaSrv.get();
       if (categoriasResult.success) {
         this.categorias = <Array<CategoriaModel>>categoriasResult.data;
-        console.log('categorias carregadas', this.categorias);
       }
+    } catch (error) {
+      console.log('Erro ao carregar as categorias', error);
     }
-    catch (error) {
-      console.log("Erro ao carregar as categorias", error);
+  }
+
+  async excluir(): Promise<void> {
+    let excluirResult = await this.produtoSrv.delete(this.produto._id);
+    console.log(excluirResult);
+    if (excluirResult.success) {
+      this._router.navigate(['produtos']);
+      console.log("produto excluído salvo com sucesso");
     }
   }
 
@@ -46,10 +54,7 @@ export class ProdutoComponent implements OnInit {
       let cadastroResult = await this.produtoSrv.post(this.produto);
       sucesso = cadastroResult.success;
     } else {
-      let updateResult = await this.produtoSrv.put(
-        this.produto._id,
-        this.produto
-      );
+      let updateResult = await this.produtoSrv.put(this.produto._id, this.produto);
       sucesso = updateResult.success;
     }
     if (sucesso) {
@@ -61,10 +66,24 @@ export class ProdutoComponent implements OnInit {
 
   ngOnInit() {
     // pega os dados do produto vindos da rota
-    this.router.params.subscribe((objeto: ProdutoModel) => {
-      this.produto = <ProdutoModel>objeto;
-      console.log("produto ngOnInit", this.produto);
-      // console.log("categoria ID", this.produto.categoriaId);
+    // this.router.params.subscribe((_produto?: ProdutoModel) => {
+    //   this.produto = _produto as ProdutoModel;
+    //   console.log("produto ngOnInit", this.produto);
+    //   console.log(_produto);
+
+    // console.log("categoria ID", this.produto.categoriaId);
+
+    // });
+
+
+    this.router.params.subscribe((prod: ProdutoModel) => {
+      if (prod && prod._id) {
+        this.produto = prod as ProdutoModel;
+        console.log('prod subs', this.produto);
+      } else {
+        this.produto = new ProdutoModel();
+      }
     });
+    this.loadData();
   }
 }

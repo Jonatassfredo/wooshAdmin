@@ -1,0 +1,23 @@
+<mat-card class="matcard">
+    <mat-card-header>
+        <button mat-button (click)="salvar()">
+            Salvar
+        </button>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item>
+                <mat-label>Título: </mat-label>
+                <br>
+                <input [(ngModel)]="categoria.titulo" type="text">
+            </mat-list-item>
+            <mat-list-item>
+                <mat-label>Descrição: </mat-label>
+                <textarea [(ngModel)]="categoria.descricao" rows="4"></textarea>
+            </mat-list-item>
+            <mat-list-item *ngIf="categoria.foto">
+                <img [src]="categoria.foto" class="foto">
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>

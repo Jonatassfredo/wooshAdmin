@@ -3,28 +3,31 @@
         <button mat-button (click)="salvar()">
             Salvar
         </button>
+        <button mat-button *ngIf="produto._id" (click)="excluir()">
+            Excluir
+        </button>
     </mat-card-header>
     <mat-card-content>
         <mat-list>
             <mat-list-item>
-                <mat-label>Títulos: </mat-label>
+                <mat-label>Título: </mat-label>
                 <br>
-                <input matInput [(ngModel)]="produto.nome" type="text">
+                <input [(ngModel)]="produto.nome" type="text">
             </mat-list-item>
             <mat-list-item>
                 <mat-label>Preço: </mat-label>
-                <input matInput [(ngModel)]="produto.preco" type="tel">
+                <input matInput [(ngModel)]="produto.preco" type="number">
             </mat-list-item>
             <mat-list-item>
                 <mat-label>Descrição: </mat-label>
                 <textarea [(ngModel)]="produto.descricao" rows="4"></textarea>
             </mat-list-item>
-
             <mat-list-item>
-                <mat-select [(ngModel)]="produto.categoriaNome"></mat-select>
-                <mat-option *ngFor="let item of categorias">{{item.titulo}}</mat-option>
+                <mat-label>Categoria: </mat-label>
+                <select [(ngModel)]="produto.categoriaId">
+                    <option value="{{item._id}}" *ngFor="let item of categorias">{{item.titulo}}</option>
+                </select>
             </mat-list-item>
-
             <mat-list-item *ngIf="produto.foto">
                 <img [src]="produto.foto" class="foto">
             </mat-list-item>

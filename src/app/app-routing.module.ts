@@ -9,6 +9,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CategoriaComponent } from './categoria/categoria.component';
 
 const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
@@ -16,8 +17,9 @@ const appRoutes: Routes = [
   { path: "pedidos", component: PedidosComponent },
   { path: "mensagens", component: MensagensComponent },
   { path: "produtos", component: ProdutosComponent },
-  { path: "produto/:_produto", component: ProdutoComponent },
+  { path: "produto/:produtoModel", component: ProdutoComponent },
   { path: "categorias", component: CategoriasComponent },
+  { path: "categoria/:categoriaModel", component: CategoriaComponent },
   { path: "clientes", component: ClientesComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: "**", component: NotFoundComponent },
