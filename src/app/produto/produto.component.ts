@@ -12,11 +12,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./produto.component.scss']
 })
 export class ProdutoComponent implements OnInit {
-  // produto: ProdutoModel = new ProdutoModel();
-  // categoria: CategoriaModel = new CategoriaModel();
-  // categorias: Array<CategoriaModel> = new Array<CategoriaModel>();
-  // produtos: ProdutoModel = new ProdutoModel();
-
   produto: ProdutoModel;
   categorias: Array<CategoriaModel> = new Array<CategoriaModel>();
 
@@ -65,20 +60,12 @@ export class ProdutoComponent implements OnInit {
 
 
   ngOnInit() {
-    // pega os dados do produto vindos da rota
-    // this.router.params.subscribe((_produto?: ProdutoModel) => {
-    //   this.produto = _produto as ProdutoModel;
-    //   console.log("produto ngOnInit", this.produto);
-    //   console.log(_produto);
-
-    // console.log("categoria ID", this.produto.categoriaId);
-
-    // });
-
-
+    //carrega produto vindo pela rota
     this.router.params.subscribe((prod: ProdutoModel) => {
       if (prod && prod._id) {
         this.produto = prod as ProdutoModel;
+        console.log(this);
+
         console.log('prod subs', this.produto);
       } else {
         this.produto = new ProdutoModel();
