@@ -23,14 +23,13 @@ export class ProdutosComponent implements OnInit {
     }
   }
 
-  // addOrEdit(model?: ProdutoModel): void {
-  //   // this.navCtrl.push("AdmProdutoPage", { _produto: model });
-  //   this.router.navigate(['produto/:model', { _produto: model }]);
-  // }
-
-  addOrEdit(_id): void {
-    // this.navCtrl.push("AdmProdutoPage", { _produto: model });
-    this.router.navigate(['produto/:_produto', _id]);
+  addOrEdit(model?: ProdutoModel): void {
+    model.categoriaNome = model.categoriaId.titulo;
+    // console.log('nome cat', model.categoriaNome);
+    model.categoriaId = model.categoriaId._id;
+    // console.log('id cat', model.categoriaId);
+    // console.log('model', model);
+    this.router.navigate(['produto/:_produto', model]);
   }
 
   ngOnInit() {

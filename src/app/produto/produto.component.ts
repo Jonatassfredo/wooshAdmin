@@ -4,7 +4,6 @@ import { CategoriaProvider } from './../../providers/categoria/categoria';
 import { CategoriaModel } from './../models/categoriaModel';
 import { ProdutoModel } from './../models/produtoModel';
 import { Component, OnInit } from '@angular/core';
-import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -14,13 +13,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProdutoComponent implements OnInit {
   produto: ProdutoModel;
+  categoria: CategoriaModel;
   categorias: Array<CategoriaModel> = new Array<CategoriaModel>();
   produtos: Array<ProdutoModel> = new Array<ProdutoModel>();
 
   constructor(
     private categoriaSrv: CategoriaProvider,
     private produtoSrv: ProdutoProvider,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private _router: Router,
   ) {
     this.loadData();
   }
@@ -39,14 +40,31 @@ export class ProdutoComponent implements OnInit {
     }
   }
 
+  async salvar(): Promise<void> {
+    let sucesso = false;
+    if (!this.produto._id) {
+      let cadastroResult = await this.produtoSrv.post(this.produto);
+      sucesso = cadastroResult.success;
+    } else {
+      let updateResult = await this.produtoSrv.put(
+        this.produto._id,
+        this.produto
+      );
+      sucesso = updateResult.success;
+    }
+    if (sucesso) {
+      this._router.navigate(['produtos']);
+      console.log("produto salvo com sucesso");
+    }
+  }
+
+
   ngOnInit() {
     // pega os dados do produto vindos da rota
-    this.router.params.subscribe((objeto: any) => {
-      let prod: ProdutoModel;
-      prod = <ProdutoModel>objeto;
-      this.produto = prod;
-      console.log("produtos ngOnInit", this.produto);
-      console.log("categoria ID", prod.categoriaId);
+    this.router.params.subscribe((objeto: ProdutoModel) => {
+      this.produto = <ProdutoModel>objeto;
+      console.log("produto ngOnInit", this.produto);
+      // console.log("categoria ID", this.produto.categoriaId);
     });
   }
 }
