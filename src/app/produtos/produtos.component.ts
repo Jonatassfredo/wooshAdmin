@@ -19,6 +19,7 @@ export class ProdutosComponent implements OnInit {
     if (produtoResult.success) {
       this.isLoading = false;
       this.lista = <Array<ProdutoModel>>produtoResult.data;
+      ProdutoProvider.produtos = this.lista;
       console.log(this.lista);
     }
   }

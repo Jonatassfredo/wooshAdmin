@@ -23,6 +23,13 @@ export class ProdutoComponent implements OnInit {
   ) { }
 
   async loadData(): Promise<void> {
+    //carrega produto vindo pela rota
+    try {
+      this.produto = ProdutoProvider.GetProduto(this.router.params.value.produtoId);
+    } catch (error) {
+      this.produto = new ProdutoModel();
+    }
+
     // Carrega todas as categorias
     try {
       let categoriasResult = await this.categoriaSrv.get();
@@ -58,19 +65,7 @@ export class ProdutoComponent implements OnInit {
     }
   }
 
-
   ngOnInit() {
-    //carrega produto vindo pela rota
-    this.router.params.subscribe((prod: ProdutoModel) => {
-      if (prod && prod._id) {
-        this.produto = prod as ProdutoModel;
-        console.log(this);
-
-        console.log('prod subs', this.produto);
-      } else {
-        this.produto = new ProdutoModel();
-      }
-    });
     this.loadData();
   }
 }

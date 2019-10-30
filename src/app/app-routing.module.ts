@@ -17,7 +17,7 @@ const appRoutes: Routes = [
   { path: "pedidos", component: PedidosComponent },
   { path: "mensagens", component: MensagensComponent },
   { path: "produtos", component: ProdutosComponent },
-  { path: "produto/:produtoModel", component: ProdutoComponent },
+  { path: "produto/:produtoId", component: ProdutoComponent },
   { path: "categorias", component: CategoriasComponent },
   { path: "categoria/:categoriaModel", component: CategoriaComponent },
   { path: "clientes", component: ClientesComponent },

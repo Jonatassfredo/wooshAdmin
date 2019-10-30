@@ -22,13 +22,14 @@
                 <mat-list-item *ngIf="lista.length == 0" style="color: black;">
                     Você não tem nenhuma categoria cadastrada.
                 </mat-list-item>
-                <mat-list-item *ngFor="let item of lista" text-wrap (click)="addOrEdit(item)" style="color: black;">
+                <mat-list-item *ngFor="let item of lista" text-wrap style="color: black;">
                     <p>Produto: <strong>{{ item.nome }}</strong>
                     </p>
                     <p class="categoria">
                         Categoria: <strong>{{ item.categoriaId.titulo }}</strong>
                     </p>
-                    <button mat-raised-button (click)="addOrEdit(item)" class="btnEditar">Editar</button>
+                    <a routerLink="/produto/{{ item._id }}" mat-raised-button mat-button class="btnEditar">Editar</a>
+                    <!-- <button (click)="addOrEdit(item)" class="btnEditar">Editar</button> -->
                 </mat-list-item>
             </mat-list>
         </mat-card>
